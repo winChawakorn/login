@@ -1,31 +1,32 @@
 import React from 'react';
-
-const s = {padding: `1.5%`, marginTop: `-1%`};
+import { BrowserRouter as Link } from 'react-router-dom';
 
 class Signup extends React.Component {
     render() {
         return (
             <div className="signup">
                 <div className="signup-form">
-                    <div className="topic">SIGN UP</div>
-                    <div className="name">
-                        <div style={{width: `50%`}}>
-                            <div className="signup-text" style={{marginLeft: `1%`}}>Firstname</div>
-                            <input placeholder="Firstname" className="textfield" style={{padding: `3%`, width: `70%`}} />
+                    <div style={{ fontSize: "25px", marginTop: "0.5em", marginBottom: "0.5em" }}>SIGN UP</div>
+                    <div style={{ marginLeft: `20px`, textAlign: "left" }}>
+                        <div style={{ overflow: "auto" }}>
+                            <div style={{ float: "left" }}>
+                                <div className="signup-text">Firstname</div>
+                                <input placeholder="Firstname" className="textfield" />
+                            </div>
+                            <div style={{ float: "left" }}>
+                                <div className="signup-text">Lastname</div>
+                                <input placeholder="Lastname" className="textfield" />
+                            </div>
                         </div>
-                        <div style={{width: `50%`}}>
-                            <div className="signup-text" style={{marginLeft: `1%`}}>Lastname</div>
-                            <input placeholder="Lastname" className="textfield" style={{padding: `3%`, width: `75%`}} />
-                        </div>
+                        <div className="signup-text">E-mail</div>
+                        <input placeholder="E-mail" className="textfield" />
+                        <div className="signup-text">Password</div>
+                        <input placeholder="Password" className="textfield" />
+                        <div className="signup-text">Confirm Password</div>
+                        <input placeholder="Confirm Password" className="textfield" />
                     </div>
-                    <div className="signup-text" style={{marginTop: `-1.9%`}}>E-mail</div>
-                    <input placeholder="E-mail" className="textfield" style={s}/>
-                    <div className="signup-text">Password</div>
-                    <input placeholder="Password" className="textfield" style={s}/>
-                    <div className="signup-text">Confirm Password</div>
-                    <input placeholder="Confirm Password" className="textfield" style={s}/><br></br>
-                    <button className="signup-btn" style={{padding: `3%`, marginTop: `3%`, color: "white"}}>Sign up</button>
-                    <button className="signup-btn" style={{padding: `3%`, marginTop: `3%`, marginLeft: `10%`, background: "lightblue", color: "white"}}>Cancel</button>
+                    <Link to="/"><button className="signup-btn" style={{ marginTop: "2em" }}>Sign up</button></Link>
+                    <Link to="/recover"><button className="signup-btn" style={{ marginLeft: "3em", background: "cornflowerblue" }}>Cancel</button></Link>
                 </div>
             </div>
         );

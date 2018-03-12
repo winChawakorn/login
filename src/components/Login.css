@@ -1,0 +1,30 @@
+  .login-form {
+    max-width: 450px;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background: white;
+    color: black;
+    box-shadow: 10px 10px 5px black;
+  }
+  
+  .login-form * {
+    text-align: center;
+    margin: 2%;
+    font-size: 100%;
+  }
+
+  .login-form a {
+    font-size: 80%;
+    color: black;
+  }
+  
+  .login-form button{
+    color: white;
+    background-color: #06adfd;
+    border: 0;
+    padding: 10px;
+    width: 315px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
