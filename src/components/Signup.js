@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Signup extends React.Component {
     render() {
@@ -26,7 +26,7 @@ class Signup extends React.Component {
                         <input placeholder="Confirm Password" className="textfield" />
                     </div>
                     <Link to="/"><button className="signup-btn" style={{ marginTop: "2em" }}>Sign up</button></Link>
-                    <Link to="/recover"><button className="signup-btn" style={{ marginLeft: "3em", background: "cornflowerblue" }}>Cancel</button></Link>
+                    <Link to="/"><button className="signup-btn" style={{ marginLeft: "3em", background: "cornflowerblue" }}>Cancel</button></Link>
                 </div>
             </div>
         );
