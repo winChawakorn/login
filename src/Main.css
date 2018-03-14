@@ -29,7 +29,7 @@
 
 HTML {
   height: 100%;
-  background-image: linear-gradient(#454545, darkgrey);
+  background-image: linear-gradient(#353535, #959595);
 }
 
 ::placeholder {
