@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Signup extends React.Component {
 
@@ -55,7 +55,7 @@ class Signup extends React.Component {
         const { lastname } = this.state;
         const { email } = this.state;
         const { password } = this.state;
-        fetch('http://localhost/registration.php', {
+        fetch('http://' + window.location.hostname + '/registration.php', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -69,16 +69,15 @@ class Signup extends React.Component {
             })
         }).then((response) => response.json())
             .then((responseJson) => {
-                if (responseJson !== 'successful') {
+                if (responseJson !== 'successful')
                     this.setState({ msg: 'This e-mail is already used' });
-                    return
-                }
+                else
+                    this.setState({ success: true });
+
             }).catch((error) => {
                 console.error(error);
                 return
             });
-        this.state.success = true;
-        this.forceUpdate();
     }
 
     onChange(e) {
@@ -86,8 +85,6 @@ class Signup extends React.Component {
     }
 
     render() {
-        if (this.state.success)
-            return <Redirect to="/" />
         return (
             <div className="signup-form">
                 <div className="topic">SIGN UP</div><br></br>
@@ -111,6 +108,7 @@ class Signup extends React.Component {
                     <input name="repassword" onChange={this.onChange} placeholder="Confirm Password" className="textfield" type="password" />
                 </div>
                 <button className="button" onClick={this.register} style={{ width: "200px", marginTop: "3em" }}>Sign up</button>
+                {this.state.success ? <Redirect to="/" /> : null}
             </div>
         );
     }

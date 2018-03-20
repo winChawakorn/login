@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 var longerInput = { width: "300px", textAlign: "left" };
 
@@ -10,21 +10,17 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
+            msg: '',
+            success: false,
         }
         this.login = this.login.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
     login() {
-        if (this.checkDiffPassword()) {
-            this.setState({ msg: 'Password and Confirm Password do not match!' });
-            return
-        }
-        const { firstname } = this.state;
-        const { lastname } = this.state;
         const { email } = this.state;
         const { password } = this.state;
-        fetch('http://localhost/login.php', {
+        fetch('http://' + window.location.hostname + '/login.php', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -36,8 +32,11 @@ class Login extends React.Component {
             })
         }).then((response) => response.json())
             .then((responseJson) => {
-                // Showing response message coming from server after inserting records.
-                console.log(responseJson);
+                if (responseJson !== 'true') {
+                    this.setState({ msg: 'Wrong E-mail or Password!' });
+                } else {
+                    this.setState({ success: true });
+                }
             }).catch((error) => {
                 console.error(error);
             });
@@ -45,16 +44,17 @@ class Login extends React.Component {
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        console.log(this.state);
     }
 
     render() {
         return (
             <div className="login-form">
                 <div className="topic">SIGN IN</div>
+                <span style={{ color: 'red' }}>{this.state.msg}</span><br></br>
                 <input placeholder="E-mail address" name="email" className="textfield" onChange={this.onChange} style={longerInput} />
                 <input placeholder="Password" name="password" className="textfield" type="password" onChange={this.onChange} style={longerInput} />
-                <Link to="/user"><button className="button" onClick={this.login}>Login</button></Link><br></br>
+                <button className="button" onClick={this.login}>Login</button><br></br>
+                {this.state.success ? <Redirect to="/user" /> : null}
                 {/* <Link to="/recover">forget your password ?</Link> */}
                 <div>
                     Don't have an account ?
